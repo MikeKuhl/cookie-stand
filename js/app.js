@@ -9,12 +9,14 @@ function hourlyCust(min, max) {
   let range = max - min + 1;
   return Math.floor(Math.random() * range) + min;
 }
+
 let seattle = {
   //seattle
   name: "Seattle",
   minCustomer: 23,
   maxCustomer: 65,
-  avgCookies: 6.3,
+  cookiesHrly: 6.3,
+  cookiesHrly: [],
   hoursOfOperation: [
     "6am",
     "7am",
@@ -32,17 +34,149 @@ let seattle = {
     "7pm",
     "8pm",
   ],
-  avgCustomer: function () {
+  avgOrder: function () {
     for (let i = 0; i < this.hoursOfOperation.length; i += 1) {
-      let avgCustomer = hourlyCust(this.minCustomer, this.maxCustomer);
-      this.cookieTotal[i] = avgCustomer * Math.floor(this.avgCookies);
+      let avgOrder = hourlyCust(this.minCustomer, this.maxCustomer);
+      this.cookieTotal[i] = avgOrder * Math.floor(this.cookiesHrly);
+    }
+  },
+  cookieTotal: [],
+  cookiesAmt: 0,
+};
+let tokyo = {
+  //tokyo
+  name: "Tokyo",
+  minCustomer: 3,
+  maxCustomer: 24,
+  cookiesHrly: 1.2,
+  hoursOfOperation: [
+    "6am",
+    "7am",
+    "8am",
+    "9am",
+    "10am",
+    "11am",
+    "12pm",
+    "1pm",
+    "2pm",
+    "3pm",
+    "4pm",
+    "5pm",
+    "6pm",
+    "7pm",
+    "8pm",
+  ],
+  avgOrder: function () {
+    for (let i = 0; i < this.hoursOfOperation.length; i += 1) {
+      let avgOrder = hourlyCust(this.minCustomer, this.maxCustomer);
+      this.cookieTotal[i] = avgOrder * Math.floor(this.cookiesHrly);
+    }
+  },
+  cookieTotal: [],
+  cookiesAmt: 0,
+};
+let dubai = {
+  //dubai
+  name: "dubai",
+  minCustomer: 11,
+  maxCustomer: 38,
+  cookiesHrly: 3.7,
+  hoursOfOperation: [
+    "6am",
+    "7am",
+    "8am",
+    "9am",
+    "10am",
+    "11am",
+    "12pm",
+    "1pm",
+    "2pm",
+    "3pm",
+    "4pm",
+    "5pm",
+    "6pm",
+    "7pm",
+    "8pm",
+  ],
+  avgOrder: function () {
+    for (let i = 0; i < this.hoursOfOperation.length; i += 1) {
+      let avgOrder = hourlyCust(this.minCustomer, this.maxCustomer);
+      this.cookieTotal[i] = avgOrder * Math.floor(this.cookiesHrly);
+    }
+  },
+  cookieTotal: [],
+  cookiesAmt: 0,
+};
+let paris = {
+  //paris
+  name: "paris",
+  minCustomer: 20,
+  maxCustomer: 38,
+  cookiesHrly: 2.3,
+  hoursOfOperation: [
+    "6am",
+    "7am",
+    "8am",
+    "9am",
+    "10am",
+    "11am",
+    "12pm",
+    "1pm",
+    "2pm",
+    "3pm",
+    "4pm",
+    "5pm",
+    "6pm",
+    "7pm",
+    "8pm",
+  ],
+  avgOrder: function () {
+    for (let i = 0; i < this.hoursOfOperation.length; i += 1) {
+      let avgOrder = hourlyCust(this.minCustomer, this.maxCustomer);
+      this.cookieTotal[i] = avgOrder * Math.floor(this.cookiesHrly);
+    }
+  },
+  cookieTotal: [],
+  cookiesAmt: 0,
+};
+let lima = {
+  //lima
+  name: "lima",
+  minCustomer: 2,
+  maxCustomer: 16,
+  cookiesHrly: 4.6,
+  hoursOfOperation: [
+    "6am",
+    "7am",
+    "8am",
+    "9am",
+    "10am",
+    "11am",
+    "12pm",
+    "1pm",
+    "2pm",
+    "3pm",
+    "4pm",
+    "5pm",
+    "6pm",
+    "7pm",
+    "8pm",
+  ],
+  avgOrder: function () {
+    for (let i = 0; i < this.hoursOfOperation.length; i += 1) {
+      let avgOrder = hourlyCust(this.minCustomer, this.maxCustomer);
+      this.cookieTotal[i] = avgOrder * Math.floor(this.cookiesHrly);
     }
   },
   cookieTotal: [],
   cookiesAmt: 0,
 };
 
-seattle.avgCustomer();
+seattle.avgOrder();
+tokyo.avgOrder();
+dubai.avgOrder();
+paris.avgOrder();
+lima.avgOrder();
 
 function cookieCounter(store) {
   let total = store.cookieTotal[0];
@@ -54,6 +188,10 @@ function cookieCounter(store) {
 }
 
 cookieCounter(seattle);
+cookieCounter(tokyo);
+cookieCounter(dubai);
+cookieCounter(paris);
+cookieCounter(lima);
 
 const storeContainerEl = document.getElementById("StoreData"); // find parent element
 
