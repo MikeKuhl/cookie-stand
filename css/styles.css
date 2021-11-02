@@ -142,10 +142,8 @@ header {
     margin-bottom: 100px;
 }
 
-.cube {
-
-
-
+#StoreData {
+display: flex;
 }
 
 .cube::before {
