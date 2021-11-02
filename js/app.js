@@ -41,39 +41,8 @@ let seattle = {
   cookieTotal: [],
   cookiesAmt: 0,
 };
-let tokyo = {
-  //seattle
-  name: "Tokyo",
-  minCustomer: 3,
-  maxCustomer: 24,
-  avgCookies: 1.2,
-  hoursOfOperation: [
-    "6am",
-    "7am",
-    "8am",
-    "9am",
-    "10am",
-    "11am",
-    "12pm",
-    "1pm",
-    "2pm",
-    "3pm",
-    "4pm",
-    "5pm",
-    "6pm",
-    "7pm",
-    "8pm",
-  ],
-  avgCustomer: function () {
-    for (let i = 0; i < this.hoursOfOperation.length; i += 1) {
-      let avgCustomer = hourlyCust(this.minCustomer, this.maxCustomer);
-      this.cookieTotal[i] = avgCustomer * Math.floor(this.avgCookies);
-    }
-  },
-  cookieTotal: [],
-  cookiesAmt: 0,
-};
-tokyo.avgCustomer();
+
+seattle.avgCustomer();
 
 function cookieCounter(store) {
   let total = store.cookieTotal[0];
@@ -85,7 +54,6 @@ function cookieCounter(store) {
 }
 
 cookieCounter(seattle);
-cookieCounter(tokyo);
 
 const storeContainerEl = document.getElementById("StoreData"); // find parent element
 
