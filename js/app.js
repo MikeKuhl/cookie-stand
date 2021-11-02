@@ -203,22 +203,32 @@ const h2Elem = document.createElement("h2"); // create child
 articleElem.appendChild(h2Elem); // append child
 h2Elem.textContent = seattle.name; // set/update child content as needed
 
-// need little description in p tag along with age
-
-// move to use of const as you see fit for now, otherwise use let
-
-// list of likes
 const listElem = document.createElement("ul");
 articleElem.appendChild(listElem);
 
-for (let i = 0; i < seattle.hoursOfOperation.length; i += 1) {
-  const hoursElem = document.createElement("li");
+for (let i = 0; i < seattle.cookieTotal.length; i += 1) {
+  const hoursElem = document.createElement("ol");
   listElem.appendChild(hoursElem);
-  const hourText = seattle.hoursOfOperation;
+  const hourText = seattle.cookieTotal;
   hoursElem.textContent = hourText;
 }
 
+const articleElem1 = document.createElement("article");
+storeContainerEl.appendChild(articleElem);
+const h2Elem2 = document.createElement("h2"); // create child
+articleElem1.appendChild(h2Elem2); // append child
+h2Elem2.textContent = tokyo.name;
+
+for (let i = 0; i < tokyo.cookieTotal.length; i += 1) {
+  const hoursElem = document.createElement("ol");
+  listElem.appendChild(hoursElem);
+  const hourText = tokyo.cookieTotal;
+  hoursElem.textContent = hourText;
+}
 // const imgElem = document.createElement("img");
 // articleElem.appendChild(imgElem);
 // imgElem.setAttribute("src", seattle.imgUrl);
 // imgElem.setAttribute("alt", "cute picture of " + seattle.name);
+switchElement.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
