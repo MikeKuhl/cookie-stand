@@ -58,7 +58,9 @@ header {
     padding: 30px;
 
 }
-
+.salmon {
+    size:50% ;
+}
 
 
 .switch {
@@ -170,22 +172,6 @@ header {
     bottom: -20px;
 }
 
-#html {
-    left: 100px;
-    bottom: 80px;
-    background-image: url("img/HTML5.png");
-    background-size: cover;
-    background-color: plum;
-    box-shadow: -60px 60px 20px grey;
-}
-
-#html::before {
-    background-color: rgb(233, 77, 233);
-}
-
-#html::after {
-    background-color: rgb(207, 122, 207);
-}
 
 footer {
     display: flex;
@@ -194,10 +180,3 @@ footer {
     background-color: rgb(39, 39, 39);
 }
 
-@media only screen and (min-wdith: 970px) {
-    .square {
-        width: 48%;
-        margin: 1%;
-        height: 600px;
-    }
-}
