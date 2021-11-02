@@ -1,14 +1,58 @@
-"use strict";
-const switchElement = document.querySelector(".switch");
+// "use strict";
 
-switchElement.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-});
+const switchElement = document.querySelector(".switch");
+let hours = [
+  "6am",
+  "7am",
+  "8am",
+  "9am",
+  "10am",
+  "11am",
+  "12pm",
+  "1pm",
+  "2pm",
+  "3pm",
+  "4pm",
+  "5pm",
+  "6pm",
+  "7pm",
+  "8pm",
+];
 
 function hourlyCust(min, max) {
   let range = max - min + 1;
   return Math.floor(Math.random() * range) + min;
 }
+function cookieTotal(store) {
+  for (let i = 0; i < store.cookiesHrly; i += 1) {
+    let hourlyCustSale = hourlyCust(store.minCustomer, store.maxCustomer);
+    store.cookieTotal[i] = Math.round(store.cookiesHrly * hourlyCustSale);
+  }
+  return store.cookieTotal;
+}
+function saleHrs(store) {
+  for (let i = 0; i < store.hours; i += 1) {
+    let custHourly = hourlyCust(store.minCustomer, store.maxCustomer);
+    store.cookiesHrly[i] = Math.round(store.cookiesHrly * custHourly);
+  }
+  return store.cookiesHrly;
+}
+
+// function Store(name, minCustomer, maxCustomer, cookiesHrly, hours) {
+//   this.name = name;
+//   this.minCustomer = minCustomer;
+//   this.maxCustomer = maxCustomer;
+//   this.cookiesHrly = cookiesHrly;
+//   this.hours = hours;
+//   this.cookieTotal = 0;
+//   this.saleHrs = 0;
+// }
+
+// let paris = new Store("Paris", 20, 38, 2.3, hours);
+// let lima = new Store("Lima", 2, 16, 4.6, hours);
+// let seattle = new Store("Lima", 2, 16, 4.6, hours);
+// let tokyo = new Store("Lima", 2, 16, 4.6, hours);
+// let dubai = new Store("Lima", 2, 16, 4.6, hours);
 
 let seattle = {
   //seattle
@@ -193,42 +237,42 @@ cookieCounter(dubai);
 cookieCounter(paris);
 cookieCounter(lima);
 
-const storeContainerEl = document.getElementById("StoreData"); // find parent element
-
-const articleElem = document.createElement("article"); // create child element
-
-storeContainerEl.appendChild(articleElem); // add the child to parent
-
-const h2Elem = document.createElement("h2"); // create child
-articleElem.appendChild(h2Elem); // append child
-h2Elem.textContent = seattle.name; // set/update child content as needed
-
-const listElem = document.createElement("ul");
-articleElem.appendChild(listElem);
-
-for (let i = 0; i < seattle.cookieTotal.length; i += 1) {
-  const hoursElem = document.createElement("ol");
-  listElem.appendChild(hoursElem);
-  const hourText = seattle.cookieTotal;
-  hoursElem.textContent = hourText;
+function Store(name, minCustomer, maxCustomer, cookiesHrly, hours) {
+  this.name = name;
+  this.minCustomer = minCustomer;
+  this.maxCustomer = maxCustomer;
+  this.cookiesHrly = cookiesHrly;
+  this.hoursOfOperation = hours;
 }
 
-const articleElem1 = document.createElement("article");
-storeContainerEl.appendChild(articleElem);
-const h2Elem2 = document.createElement("h2"); // create child
-articleElem1.appendChild(h2Elem2); // append child
-h2Elem2.textContent = tokyo.name;
+saleHrs(paris);
+saleHrs(lima);
+saleHrs(seattle);
+saleHrs(tokyo);
+saleHrs(dubai);
+cookieTotal(paris);
+cookieTotal(lima);
+cookieTotal(seattle);
+cookieTotal(tokyo);
+cookieTotal(dubai);
 
-for (let i = 0; i < tokyo.cookieTotal.length; i += 1) {
-  const hoursElem = document.createElement("ol");
-  listElem.appendChild(hoursElem);
-  const hourText = tokyo.cookieTotal;
-  hoursElem.textContent = hourText;
+function showData() {
+  for (let i = 0; i < paris.hoursOfOperation.length; i += 1) {
+    const saleElem = document.getElementById("Paris");
+    const listElem = document.createElement("li");
+    saleElem.appendChild(listElem);
+    let salesEntry = `${hours[i]}: ${paris.cookieTotal[i]} cookies`;
+
+    listElem.textContent = salesEntry;
+  }
+  const saleElem = document.getElementById("Paris");
+  const totalElem = document.createElement("li");
+  saleElem.appendChild(totalElem);
+
+  totalElem.textContent = `Total:${cookieCounter(paris)} cookies`;
 }
-// const imgElem = document.createElement("img");
-// articleElem.appendChild(imgElem);
-// imgElem.setAttribute("src", seattle.imgUrl);
-// imgElem.setAttribute("alt", "cute picture of " + seattle.name);
+
+showData();
 switchElement.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
