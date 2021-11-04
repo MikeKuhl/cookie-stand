@@ -61,10 +61,6 @@ Store.prototype.cookiesPerSale = function () {
   }
 
 }
-
-
-
-
 Store.prototype.render = function () {
 let row = document.createElement('tr');
 let tabData = document.createElement('td');
