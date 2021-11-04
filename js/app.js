@@ -111,11 +111,11 @@ function renderFooterRow() {
   tableRow.textContent = 'Totals';
   cookieTable.appendChild(tableRow);
   let total = 0;
-  for (let i = 0; i < hours.length; i +=1) {
+  for (let hoursIndex = 0; hoursIndex < hours.length; hoursIndex +=1) {
     let hourlyTotal = 0;
     for (let j = 0; j < stores.length; j+=1) {
-      hourlyTotal = hourlyTotal + stores[j].cookiesPerHour[i];
-      total += stores[j].cookiesPerHour[i];
+      hourlyTotal = hourlyTotal + stores[j].cookiesPerHour[hoursIndex];
+      total += stores[j].cookiesPerHour[hoursIndex];
     }
     var tdData = document.createElement('td');
     tdData.textContent = hourlyTotal;
@@ -144,24 +144,9 @@ switchElement.addEventListener("click", () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//https://www.aspsnippets.com/Articles/Create-dynamic-Table-in-HTML-at-runtime-using-JavaScript.aspx
 //https://www.delftstack.com/howto/javascript/create-table-javascript/
 //https://www.delftstack.com/howto/javascript/create-table-javascript/
 //https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
 //https://www.tutorialrepublic.com/html-tutorial/html-tables.php
 //https://www.codeproject.com/Articles/1036671/Creating-HTML-Tables-with-JavaScript-DOM-Methods
-
+//https://www.py4u.net/discuss/277466
