@@ -26,18 +26,17 @@ let tbody = document.createElement('tbody');
 
 
 
-function Store(name, minCustomer, maxCustomer, avgCookie) {
+function Store(name, minCustomers, maxCustomers, avgCookie) {
 
   this.name = name;
-  this.minCustomer = minCustomer;
-  this.maxCustomer = maxCustomer;
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
   this.avgCookie = avgCookie;
 
 
   this.totalCustomersPerHour = [];
   this.cookiesPerHour = []
   this.totalSale = 0;
-
   this.customersPerHour();
   this.cookiesPerSale();
   stores.push(this);
