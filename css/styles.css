@@ -142,12 +142,57 @@ header {
     margin-bottom: 100px;
 }
 
-.cube {
-
-
-
+#Seattle {
+display:block;
+width: 170px;
+margin: auto;
+right: 12px;
+bottom: -9px;
+border: solid;
+margin-right:30%;
+position: relative;
+padding: 10px;
 }
-
+#Tokyo {
+    display:block;
+    width: 170px;
+    bottom: 567px;
+    right: 953px;
+    border: solid;
+    margin-left:1%;
+    position: fixed;
+    padding: 10px;
+}
+#Dubai {
+    display:block;
+    width: 170px;
+    bottom: 567px;
+    right: 1141px;
+    border: solid;
+    margin-left:1%;
+    position: fixed;
+    padding: 10px;
+}
+#Paris {
+    display:block;
+    width: 170px;
+    bottom: 567px;
+    right: 761px;
+    border: solid;
+    margin-left:1%;
+    position: fixed;
+    padding: 10px;
+}
+#Lima {
+    display:block;
+    width: 170px;
+    bottom: 567px;
+    right: 568px;
+    border: solid;
+    margin-left:1%;
+    position: fixed;
+    padding: 10px;
+}
 .cube::before {
     position: absolute;
     content: "";
@@ -178,3 +223,11 @@ footer {
     background-color: rgb(39, 39, 39);
 }
 
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+th, td{
+    padding: 10px 20px;
+    border: 1px solid #000;
+}
