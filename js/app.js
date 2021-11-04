@@ -19,113 +19,143 @@ let hours = [
   "7pm",
   "8pm",
 ];
-
+let stores = [];
 let cookieTable = document.getElementById('cookieTable');
 let thead = document.createElement('thead');
 let tbody = document.createElement('tbody');
 
 
 
-function Store(name, minCustomer, maxCustomer, avgCookie, hours) {
+function Store(name, minCustomer, maxCustomer, avgCookie) {
+
   this.name = name;
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
   this.avgCookie = avgCookie;
-  this.hours = hours;
 
-  this.customers = 0;
-  this.custPerHrs = []
-  this.avgCookieSale = []
-  this.totalSale = [];
-  this.randCust();
-  this.counter();
-  this.generateHourlySales();
-  this.cookiePerSale();
-  this.salesPerHr = []
+
+  this.totalCustomersPerHour = [];
+  this.cookiesPerHour = []
+  this.totalSale = 0;
+
+  this.customersPerHour();
+  this.cookiesPerSale();
+  stores.push(this);
+
+
 }
-//generates a random number of sales/customers per day
-Store.prototype.randCust = function()  {
-  let range = this.maxCustomer - this.minCustomer + 1;
-  this.customers = Math.floor(Math.random() * range) + this.minCustomer;
-}
+
 //returns total number of cookies sold every hour
-Store.prototype.counter =  function() {
-  let total = this.totalSale[0]
-  for (let i = 1; i < this.totalSale.length; i +=1) {
-   this.total = total + this.totalSale[i];
+Store.prototype.customersPerHour =  function() {
+  for (let i = 0; i < hours.length; i+= 1) {
+    let hourlyCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
+    this.totalCustomersPerHour.push(hourlyCustomers);
+  }
+}
+//this should return a sale per hour based on the random customersPerHour per hour
+Store.prototype.cookiesPerSale = function () {
+  for (let i = 0; i < hours.length; i+= 1) {
+    let hourlySales = Math.ceil(this.totalCustomersPerHour[i] * this.avgCookie);
+    this.cookiesPerHour.push(hourlySales);
+    this.totalSale += hourlySales;
   }
 
 }
-//this should return a sale per hour based on the random customers per hour
-Store.prototype.generateHourlySales = function () {
-  for (let i = 0; i < this.hours.length; i +=1) {
-
-
-const rando = Math.random()
-const absCustomerRange = this.maxCustomers - this.minCustomers + 1
-const generatedCustomerCount = Math.floor(Math.random() * absCustomerRange) ;
-const adjustedCustomerCount = generatedCustomerCount + this.minCustomer
-const estimatedSales = Math.ceil(adjustedCustomerCount * this.avgCookieSale)
-this.salesPerHr.push(adjustedCustomerCount);
-}
-}
-Store.prototype.cookiePerSale = function () {
-for (let i = 0; i < this.hours.length; i+=1) {
-  let hrlySale =  Math.floor(this.custPerHrs[i] * this.avgCookie);
-  this.avgCookieSale.push(hrlySale);
-  this.totalSale += hrlySale;
-}
-}
-
-
-
-// Store.prototype.render = function () {
-// let row = document.createElement('tr');
-// let tabData = document.createElement('td');
-// tabData.textContent = this.name;
-// row.appendChild(tabData);
-// for (let i = 0; i < this.avgCookie.length; i +=1) {
-//   let cell = document.createElement('td');
-//   cell.textContent = this.avgCookie[i];
-//   row.appendChild(cell);
-// };
-// let total = document.createElement('td');
-// total.textContent =  this.totalSale;
-// row.appendChild(total);
-// cookieTable.appendChild(row);
-// };
 
 
 
 
-let paris = new Store("Paris", 20, 38, 2.3, hours);
-let lima = new Store("Lima", 2, 16, 4.6, hours);
-let seattle = new Store("Seattle", 2, 16, 4.6, hours);
-let tokyo = new Store("Tokyo", 2, 16, 4.6, hours);
-let dubai = new Store("Dubai", 2, 16, 4.6, hours);
+Store.prototype.render = function () {
+let row = document.createElement('tr');
+let tabData = document.createElement('td');
+tabData.textContent = this.name;
+row.appendChild(tabData);
+for (let i = 0; i < this.cookiesPerHour.length; i +=1) {
+  let cell = document.createElement('td');
+  cell.textContent = this.cookiesPerHour[i];
+  row.appendChild(cell);
+};
+let total = document.createElement('td');
+total.textContent =  this.totalSale;
+row.appendChild(total);
+cookieTable.appendChild(row);
+};
 
-const stores = ["Paris", 20, 38, 2.3, hours,"Lima", 2, 16, 4.6, hours,
-"Seattle", 2, 16, 4.6, hours,
-"Tokyo", 2, 16, 4.6, hours,
-"Dubai", 2, 16, 4.6, hours]
 
-const hourlyTotals = [];
-for (let hourlyIndex=0; hourlyIndex < hours.length; hourlyIndex+=1) {
-  const timeSlot = hours[hourlyIndex];
-  let hourlySalestotal = 0;
-  for(let storesIndex= 0; j < stands.length; storesIndex+=1) {
-    const store = stores[storesIndex];
-    const hourlySalesForCurrentStand = store.salesPerHr[hourlyIndex]
 
-    hourlySalesTotal =+ hourlySalesForCurrentStand;
+function renderHeader() {
+  let tableRow = document.createElement('tr');
+  let thElem =  document.createElement('th');
+  thElem.textContent = null;
+  cookieTable.appendChild(tableRow);
+  tableRow.appendChild(thElem);
+  for (let i = 0; i < hours.length; i+=1) {
+    thElem = document.createElement('th');
+    thElem.textContent = hours[i];
+    tableRow.appendChild(thElem);
   }
-  hourlyTotals.push(hourlySalestotal);
-}
-// seattle.render();
+  thElem = document.createElement('th');
+  thElem.textContent = 'Store Total';
+  tableRow.appendChild(thElem);
+  cookieTable.appendChild(tableRow)
+};
 
+function renderStores() {
+  for (let i = 0; i < stores.length; i+=1) {
+    stores[i].render();
+  }
+};
+
+function renderFooterRow() {
+  let tableRow = document.createElement('tr');
+  tableRow.textContent = 'Totals';
+  cookieTable.appendChild(tableRow);
+  let total = 0;
+  for (let i = 0; i < hours.length; i +=1) {
+    let hourlyTotal = 0;
+    for (let j = 0; j < stores.length; j+=1) {
+      hourlyTotal = hourlyTotal + stores[j].cookiesPerHour[i];
+      total += stores[j].cookiesPerHour[i];
+    }
+    var tdData = document.createElement('td');
+    tdData.textContent = hourlyTotal;
+    tableRow.appendChild(tdData);
+  }
+  tdData = document.createElement('td');
+  tdData.textContent = total;
+  tableRow.appendChild(tdData);
+}
+
+// constructs new stores
+let paris = new Store("Paris", 20, 38, 2.3);
+let lima = new Store("Lima", 2, 16, 4.6);
+let seattle = new Store("Seattle", 2, 16, 4.6);
+let tokyo = new Store("Tokyo", 2, 16, 4.6);
+let dubai = new Store("Dubai", 2, 16, 4.6);
+
+
+renderHeader();
+renderStores();
+renderFooterRow();
+
+//theme
 switchElement.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //https://www.aspsnippets.com/Articles/Create-dynamic-Table-in-HTML-at-runtime-using-JavaScript.aspx
@@ -134,3 +164,4 @@ switchElement.addEventListener("click", () => {
 //https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
 //https://www.tutorialrepublic.com/html-tutorial/html-tables.php
 //https://www.codeproject.com/Articles/1036671/Creating-HTML-Tables-with-JavaScript-DOM-Methods
+
