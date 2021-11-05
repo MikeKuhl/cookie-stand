@@ -76,6 +76,9 @@ row.appendChild(total);
 cookieTable.appendChild(row);
 };
 
+Store.prototype.renderRow = function() {
+
+}
 
 
 function renderHeader() {
@@ -119,6 +122,7 @@ function renderFooterRow() {
   tdData = document.createElement('td');
   tdData.textContent = total;
   tableRow.appendChild(tdData);
+  tableRow.setAttribute('id', 'footerRow');
 }
 
 // constructs new stores
@@ -133,6 +137,26 @@ renderHeader();
 renderStores();
 renderFooterRow();
 
+const formElem = document.getElementById('form');
+
+formElem.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(formElem);
+  let newStore = new Store(
+    formData.get('name'),
+    formData.get('minCustomers'),
+    formData.get('maxCustomers'),
+    formData.get('avgCookie')
+  );
+
+  newStore.render();
+  const footer = document.getElementById('footerRow');
+  footer.remove();
+  renderFooterRow();
+  formElem.reset();
+});
+
 //theme
 switchElement.addEventListener("click", () => {
   document.body.classList.toggle("dark");
@@ -145,3 +169,5 @@ switchElement.addEventListener("click", () => {
 //https://www.tutorialrepublic.com/html-tutorial/html-tables.php
 //https://www.codeproject.com/Articles/1036671/Creating-HTML-Tables-with-JavaScript-DOM-Methods
 //https://www.py4u.net/discuss/277466
+//https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement
+//https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form

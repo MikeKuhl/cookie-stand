@@ -28,29 +28,30 @@
 
                   </table>
             </div>
-            <form>
+            <form id='form'>
             <fieldset>
               <legend>Add Stores</legend>
               <div>
                 <label for="name">Store Name:</label>
-                <input type="text" id="name" placeholder="Input a name">
+                <input type="text" name="name" placeholder="Input a name">
               </div>
               <div>
                 <label for="minCustomers">Minimum Number of Customers:</label>
-                <input type="text" id="minCustomer" placeholder="Input a Number">
+                <input type="number" name="minCustomers" placeholder="Input a Number">
               </div>
               <div>
                 <label for="maxCustomers">Max Number of Customers:</label>
-                <input type="text" id="avgCookie" placeholder="Input a Number">
+                <input type="number" name="maxCustomers" placeholder="Input a Number">
               </div>
               <div>
                 <label for="avgCookie">Estimate Number of Customers:</label>
-                <input type="text" id="avgCookie" placeholder="Input a Number">
+                <input type="number" name="avgCookie" placeholder="Input a Number">
               </div>
             </fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitButton">Submit</button>
             <button type="reset">Reset</button>
           </form>
+
 
 
     <ul id="seattle"></ul>
