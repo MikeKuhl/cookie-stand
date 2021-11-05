@@ -162,8 +162,6 @@ switchElement.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
 
-
-//https://www.delftstack.com/howto/javascript/create-table-javascript/
 //https://www.delftstack.com/howto/javascript/create-table-javascript/
 //https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
 //https://www.tutorialrepublic.com/html-tutorial/html-tables.php
