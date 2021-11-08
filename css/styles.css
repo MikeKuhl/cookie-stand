@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:ital,wght@0,100;1,400;1,500&display=swap');
 
 body {
     transition: 0.3s;
     margin: 0;
     padding: 0;
-    font-weight: 300;
+    font-weight: 500;
     background-color: rgb(226, 218, 218);
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -69,6 +71,7 @@ header {
     border-radius: 20px;
     background-color: rgb(36, 35, 35);
     position: relative;
+    left: 1500px;
 
 }
 
@@ -230,7 +233,31 @@ table{
 th, td{
     padding: 10px 20px;
     border: 1px solid #000;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    background-color: rgba(147, 211, 236, 0.486);
 }
 #fieldset {
-width: 1px;
+width: 270px;
+font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+}
+
+#saleHeader {
+
+}
+#photos {
+    display: flex;
+    position: absolute;
+    top: 97px;
+    left: -46px;
+    width: 74px;
+    height: 300px;
+    column-count: 1;
+    column-gap: 40px;
+    column-rule-width: 1px;
+    column-span: all;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+flex-direction: row;
+align-content: normal;
 }
